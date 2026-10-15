@@ -1,7 +1,10 @@
 // Entity.hpp
 #ifndef XENON_ENTITY_HPP
 #define XENON_ENTITY_HPP
- 
+
+
+#include <algorithm>
+#include <iostream>
 
 #include "Vector2D.h" 
 
@@ -24,37 +27,49 @@ namespace ConsoleXenonShooter {
  
         void move(double deltaTime);   // position += velocity * deltaTime
  
-    private:
+   // private:
         Vector2D position;
         Vector2D velocity;
         bool active{true};
     };
  
+    
+    
+    
+    
     struct Shot : public Entity
     {
         public:
         Shot(Vector2D position, Vector2D velocity, double power);
         
         
+        void update(double deltaTime) override
+        {
+            return position += velocity * deltaTime; 
+        };
+        
         Vector2D getPosition(Shot& shot) const; //Test, to be removed later
         
         
-        Vector2D setPosition(Shot& shot, double deltatime) const;
+        Vector2D setPosition(Shot& shot, double deltaTime) const;
+        
+        
     };
+    
+    
+    
+    
     
     struct Enemy : public Entity
     {
         public:
         Enemy(Vector2D position, Vector2D velocity, double health);
     
+        Vector2D getPosition() const {return this->position};
         
+        void print() const override {std::cout << this->getPosition();}
         
     };
-    
-    
-    
-    
-   
     
 }
  
