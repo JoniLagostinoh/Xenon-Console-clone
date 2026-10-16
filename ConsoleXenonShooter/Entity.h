@@ -3,9 +3,6 @@
 #define XENON_ENTITY_HPP
 
 
-#include <algorithm>
-#include <iostream>
-
 #include "Vector2D.h" 
 
 namespace ConsoleXenonShooter {
@@ -18,10 +15,15 @@ namespace ConsoleXenonShooter {
         virtual void update(double deltaTime) = 0;   // pure virtual
         virtual void print() const = 0;              // pure virtual
  
-        Vector2D getPosition() const;
-        Vector2D getVelocity() const;
-        void setVelocity(Vector2D velocity);
- 
+        
+        
+        virtual Vector2D getPosition() const {return position;}
+        virtual Vector2D getVelocity() const { return velocity;}
+
+
+        void setVelocity(Vector2D vel);
+        void setPosition(Vector2D pos);
+        
         bool isActive() const;
         void deactivate();
  
@@ -37,37 +39,38 @@ namespace ConsoleXenonShooter {
     
     
     
-    struct Shot : public Entity
+    struct Shot : Entity
     {
-        public:
         Shot(Vector2D position, Vector2D velocity, double power);
+    private:
+        double power;
+       
         
         
-        void update(double deltaTime) override
-        {
-            return position += velocity * deltaTime; 
-        };
-        
-        Vector2D getPosition(Shot& shot) const; //Test, to be removed later
-        
-        
-        Vector2D setPosition(Shot& shot, double deltaTime) const;
-        
-        
+    protected:
+        void update(double deltaTime) override;
+        void print() const override;
+        double getPower() const {return power;}
     };
     
     
     
     
     
-    struct Enemy : public Entity
+    struct Enemy : Entity
     {
-        public:
+ 
         Enemy(Vector2D position, Vector2D velocity, double health);
     
-        Vector2D getPosition() const {return this->position};
+    private:
+        double health;
+        Vector2D velocity_;
+        Vector2D position_;
+
+    protected:
+        void update(double deltaTime) override;
+        void print() const override;
         
-        void print() const override {std::cout << this->getPosition();}
         
     };
     
