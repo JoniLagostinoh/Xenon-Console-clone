@@ -1,9 +1,10 @@
 #include <iostream>
 #include <stdexcept>
-#include "Enemy.cpp"
+#include "Entity.h"
 #include "Gun.h"
+#include "World.h"
 #include "SpaceShip.cpp"
-#include "World.cpp"
+
 
 int main() {
     using namespace ConsoleXenonShooter;
@@ -17,6 +18,7 @@ int main() {
  
         world.add(new SpaceShip{Vector2D{100.0, 300.0},
                                 Gun{GunType::light, 0.5, 20}});
+        
         world.add(new Enemy{Vector2D{790.0, 300.0},
                             Vector2D{-40.0, 0.0}, 5.0});
  

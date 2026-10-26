@@ -1,6 +1,7 @@
 #include "Gun.h"
+#include <stdexcept>
 
-double powerOfGun(GunType type) {
+double powerOf(GunType type) {
     switch (type) {
     case GunType::light:  return 1.0;
     case GunType::medium: return 2.0;
@@ -9,7 +10,7 @@ double powerOfGun(GunType type) {
     throw std::invalid_argument("Invalid Gun Type");
 }
 
-Gun::Gun(GunType type, double cooldown, int maxAmmo) : type(type), cooldown(cooldown), maxAmmo(maxAmmo)
+Gun::Gun(GunType type, double cooldown, int maxAmmo) : type(type), cooldown(cooldown), maxAmmo(maxAmmo), currentAmmo(maxAmmo)
 {
     if (cooldown < 0.0 || maxAmmo <= 0)
     {

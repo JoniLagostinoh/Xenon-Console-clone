@@ -1,6 +1,4 @@
 #pragma once
-#include <iostream>
-#include <algorithm>
 
 
 enum class GunType { light, medium, heavy };
@@ -10,7 +8,7 @@ double powerOf(GunType type);   // light = 1, medium = 2, heavy = 4 (use a switc
 class Gun {
     
     
-    private:
+    
     GunType type;
     double cooldown;
         int maxAmmo;

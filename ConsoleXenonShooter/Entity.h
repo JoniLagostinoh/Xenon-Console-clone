@@ -29,7 +29,7 @@ namespace ConsoleXenonShooter {
  
         void move(double deltaTime);   // position += velocity * deltaTime
  
-   // private:
+   protected:
         Vector2D position;
         Vector2D velocity;
         bool active{true};
@@ -42,15 +42,16 @@ namespace ConsoleXenonShooter {
     struct Shot : Entity
     {
         Shot(Vector2D position, Vector2D velocity, double power);
+        
+        void update(double deltaTime) override;
+        void print() const override;
+        double getPower() const {return power;}
+        
     private:
         double power;
        
         
-        
-    protected:
-        void update(double deltaTime) override;
-        void print() const override;
-        double getPower() const {return power;}
+
     };
     
     
@@ -64,8 +65,7 @@ namespace ConsoleXenonShooter {
     
     private:
         double health;
-        Vector2D velocity_;
-        Vector2D position_;
+        
 
     protected:
         void update(double deltaTime) override;

@@ -32,7 +32,7 @@ namespace ConsoleXenonShooter {
         Entity::move(deltaTime);           
     }
 
-    void Shot::print() const override {
+    void Shot::print() const {
         std::cout << "Shot at (" << position.x << ", "
                   << position.y << ") power=" << power << "\n";
     }
