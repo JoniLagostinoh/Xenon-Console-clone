@@ -13,13 +13,15 @@ class Gun {
     private:
     GunType type;
     double cooldown;
-    int maxAmmo;
+        int maxAmmo;
     
     
     
     
     
 public:
+    int currentAmmo;
+    
     Gun(GunType type, double cooldown, int maxAmmo);
 
     GunType getType()     const { return type; }

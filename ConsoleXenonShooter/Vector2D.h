@@ -45,6 +45,8 @@ namespace ConsoleXenonShooter
         return Vector2D{a.x * b, a.y * b};
     }
     
+    
+    
    inline bool operator==(Vector2D a, Vector2D b)
     {
         return a.x == b.x && a.y == b.y;
@@ -58,6 +60,6 @@ namespace ConsoleXenonShooter
     
   inline  double lenght(Vector2D vector)
     {
-        return sqrt(vector.x * vector.x + vector.y * vector.y); //VEctor lenght is defined as the sqrt of the sum of squares of it's "dimentions" (I.e: v2D -> Sqrt (a^2+b^2), v3D -> (sqrt(a^2+b^2+c^2), etc...))
+        return std::sqrt(vector.x * vector.x + vector.y * vector.y); //VEctor lenght is defined as the sqrt of the sum of squares of it's "dimentions" (I.e: v2D -> Sqrt (a^2+b^2), v3D -> (sqrt(a^2+b^2+c^2), etc...))
     }
 }
