@@ -26,7 +26,10 @@ namespace ConsoleXenonShooter {
     
    
     Shot::Shot(Vector2D position, Vector2D velocity, double power)
-        : Entity(position, velocity) {}
+        : Entity(position, velocity)
+    {
+       
+    }
 
     void Shot::update(double deltaTime) {
         Entity::move(deltaTime);           

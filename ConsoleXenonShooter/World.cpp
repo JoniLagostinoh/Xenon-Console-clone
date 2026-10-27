@@ -51,16 +51,22 @@ namespace ConsoleXenonShooter
     //Todo: Finish World Implementation
     void World::print() const
     {
-        
+        std::cout << "World " << width << "x" << height << " with " << entities.size() << " entities: \n";
+        for (const Entity* e : entities)
+        {
+            e->print();
+        }
     }
  
     int World::countShots() const
     {
         int count = 0;
-        for (Entity* e : entities)
+        for (const Entity* e : entities)
         {
-            //Cast each entity and check if it's of type Shot
+            if (dynamic_cast<const Shot*>(e) != nullptr)
+                ++count;
         }
+        return count;
     }// uses dynamic_cast
     
     int World::countEnemies() const
@@ -68,26 +74,24 @@ namespace ConsoleXenonShooter
         int count = 0;
         for (const Entity* e : entities)
         {
-            //
+            if (dynamic_cast<const Enemy*>(e) != nullptr) ++count;
         }
+        return count;
     }// uses dynamic_cast
     
    
  
  SpaceShip* World::findShip()
  {
-     if (entities.size() != 0)
-     {
+     
          for (Entity* e : entities)
          {
-             //
+             if (auto* ship = dynamic_cast<SpaceShip*>(e))
+             {
+                 return ship;   
+             }
          }
-     }
-     else
-     {
-         
-             throw std::invalid_argument("No entities found");
-  
-     }
+        return nullptr; //Unverified: Rider recomended
+        
  }// uses dynamic_cast; nullptr if there is none
 };
